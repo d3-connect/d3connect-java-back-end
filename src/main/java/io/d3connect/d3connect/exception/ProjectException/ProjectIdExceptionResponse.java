@@ -2,17 +2,17 @@ package io.d3connect.d3connect.exception.ProjectException;
 
 public class ProjectIdExceptionResponse {
 
-    private Long projectId;
+    private String projectException;
 
-    public ProjectIdExceptionResponse(Long projectId) {
-        this.projectId = projectId;
+    public ProjectIdExceptionResponse(String projectException) {
+        this.projectException = projectException;
     }
 
-    public Long getProjectId() {
-        return projectId;
+    public String getProjectException() {
+        return projectException;
     }
 
-    public void setProjectId(Long projectId) {
-        this.projectId = projectId;
+    public void setProjectException(String projectException) {
+        this.projectException = projectException;
     }
 }

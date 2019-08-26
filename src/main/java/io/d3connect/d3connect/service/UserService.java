@@ -12,7 +12,11 @@ public class UserService {
 
     //Create or Update User
     public User createOrUpdateUser(User user) {
-        return userRepository.save(user);
+        try {
+            return userRepository.save(user);
+        } catch (Exception e) {
+            throw new RuntimeException();
+        }
     }
 
     // Find All Users
