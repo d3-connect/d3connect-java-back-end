@@ -1,4 +1,9 @@
 package io.d3connect.d3connect.repository;
 
-public class ProjectRepository {
+import io.d3connect.d3connect.domain.Project;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface ProjectRepository extends CrudRepository<Project, Long> {
 }
