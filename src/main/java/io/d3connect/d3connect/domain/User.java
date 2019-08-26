@@ -1,6 +1,7 @@
 package io.d3connect.d3connect.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -14,10 +15,18 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotBlank(message = "E-mail is required")
+    private String email;
+
     @Column(unique = true)
     @NotBlank(message = "Username is required and must be unique")
     @Size(min=4, max=12, message = "Please use 4 - 12 characters for your username")
     private String userName;
+
+    @NotBlank(message = "Username is required and must be unique")
+    @Size(min=4, max=15, message = "Please use 4 - 15 characters for your password")
+    @JsonIgnore
+    private String password;
 
     @NotBlank(message = "First Name is required")
     private String firstName;
@@ -91,5 +100,21 @@ public class User {
 
     public void setProfileImage(String profileImage) {
         this.profileImage = profileImage;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
