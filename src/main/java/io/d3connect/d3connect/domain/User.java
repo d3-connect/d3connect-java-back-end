@@ -12,7 +12,7 @@ import java.util.Date;
 @Entity
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank(message = "E-mail is required")
@@ -23,9 +23,8 @@ public class User {
     @Size(min=4, max=12, message = "Please use 4 - 12 characters for your username")
     private String userName;
 
-    @NotBlank(message = "Username is required and must be unique")
+    @NotBlank(message = "Password is required")
     @Size(min=4, max=15, message = "Please use 4 - 15 characters for your password")
-    @JsonIgnore
     private String password;
 
     @NotBlank(message = "First Name is required")

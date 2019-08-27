@@ -25,7 +25,7 @@ public class UserController {
     MapValidationErrorService mapValidationErrorService;
 
     // User Creation
-    @PostMapping("/createaccount")
+    @PostMapping("/create/account")
     public ResponseEntity<?> createNewUser(@Valid @RequestBody User user, BindingResult result) {
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationErrorService(result);
 

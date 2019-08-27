@@ -1,6 +1,7 @@
 package io.d3connect.d3connect.service;
 
 import io.d3connect.d3connect.domain.User;
+import io.d3connect.d3connect.exception.ProjectUserException.CustomErrorException;
 import io.d3connect.d3connect.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ public class UserService {
         try {
             return userRepository.save(user);
         } catch (Exception e) {
-            throw new RuntimeException();
+            throw new CustomErrorException("Error creating a user - " + user);
         }
     }
 
