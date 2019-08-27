@@ -41,6 +41,9 @@ public class Project {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date updated_At;
 
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "project")
+    private ProjectBacklog projectBacklog;
+
 
     public Project() {
     }
@@ -125,5 +128,13 @@ public class Project {
 
     public void setProjectLogo(String projectLogo) {
         this.projectLogo = projectLogo;
+    }
+
+    public ProjectBacklog getProjectBacklog() {
+        return projectBacklog;
+    }
+
+    public void setProjectBacklog(ProjectBacklog projectBacklog) {
+        this.projectBacklog = projectBacklog;
     }
 }
