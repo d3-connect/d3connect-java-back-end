@@ -16,7 +16,7 @@ public class ProjectService {
         try {
             return projectRepository.save(project);
         } catch (Exception e) {
-            throw  new CustomErrorException("ERROR Creating a project - " + project);
+            throw  new CustomErrorException("ERROR Creating a project - Project Identifier already exists" + project);
         }
     }
 }

@@ -33,14 +33,12 @@ public class ProjectTask {
         this.created_At = new Date();
     }
 
-    @PrePersist
+    @PreUpdate
     protected void onUpdate() {
         this.updated_At = new Date();
     }
 
-    public ProjectTask() {
-
-    }
+    public ProjectTask() { }
 
     public Long getId() {
         return id;
