@@ -1,4 +1,4 @@
-package io.d3connect.d3connect.exception.ProjectException;
+package io.d3connect.d3connect.exception.ProjectUserException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,8 +12,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class CustomResponseEntityException extends ResponseEntityExceptionHandler {
     @ExceptionHandler
-    public final ResponseEntity<Object> handleProjectIdException(ProjectIdException ex, WebRequest request){
-        ProjectIdExceptionResponse exceptionResponse = new ProjectIdExceptionResponse(ex.getMessage());
+    public final ResponseEntity<Object> handleProjectIdException(CustomErrorException ex, WebRequest request){
+        ErrorExceptionResponse exceptionResponse = new ErrorExceptionResponse(ex.getMessage());
         return new ResponseEntity(exceptionResponse, HttpStatus.BAD_REQUEST);
     }
 }
