@@ -1,9 +1,6 @@
 package io.d3connect.d3connect.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class ProjectBacklog {
@@ -16,8 +13,11 @@ public class ProjectBacklog {
 
 
     // One to One with Project
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "project_id", nullable = false)
+    private Project project;
 
-    // One to Many with
+    // One to Many with project Tasks
 
 
     public ProjectBacklog() {
@@ -45,5 +45,13 @@ public class ProjectBacklog {
 
     public void setProjectIdentifier(String projectIdentifier) {
         this.projectIdentifier = projectIdentifier;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 }
