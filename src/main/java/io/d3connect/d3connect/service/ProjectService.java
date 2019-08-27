@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProjectService {
 
+    // Notes for new Repo name
+
     @Autowired
     ProjectRepository projectRepository;
 
