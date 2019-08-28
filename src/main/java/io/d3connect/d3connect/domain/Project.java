@@ -44,6 +44,9 @@ public class Project {
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "project")
     private ProjectBacklog projectBacklog;
 
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "project")
+    private Comment comment;
+
 
     public Project() {
     }
@@ -133,4 +136,6 @@ public class Project {
     public ProjectBacklog getProjectBacklog() { return projectBacklog; }
 
     public void setProjectBacklog(ProjectBacklog projectBacklog) { this.projectBacklog = projectBacklog; }
+
+
 }
