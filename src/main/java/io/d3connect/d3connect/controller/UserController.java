@@ -7,12 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+/*
+ *
+ *
+ *
+ *
+ *
+ */
 
 @RestController
 @RequestMapping("/api")
@@ -25,7 +29,7 @@ public class UserController {
     MapValidationErrorService mapValidationErrorService;
 
     // User Creation
-    @PostMapping("/create/account")
+    @PostMapping("/account/create")
     public ResponseEntity<?> createNewUser(@Valid @RequestBody User user, BindingResult result) {
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationErrorService(result);
 
@@ -34,8 +38,21 @@ public class UserController {
             return errorMap;
         }
 
-        User userSave = userService.createOrUpdateUser(user);
+        User userCreate = userService.createOrUpdateUser(user);
         return new ResponseEntity<User>(user, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/account/user/{username}")
+    public ResponseEntity<?> findUserByUsername(@PathVariable String username) {
+        User user = userService.findUsername(username);
+        return new ResponseEntity<User>(user, HttpStatus.OK);
+    }
+
+    @PostMapping("/account/user/delete/{userId}")
+    public ResponseEntity<?> deleteUserById(@PathVariable Long userId, BindingResult result) {
+
+        return null;
+
     }
 
 }

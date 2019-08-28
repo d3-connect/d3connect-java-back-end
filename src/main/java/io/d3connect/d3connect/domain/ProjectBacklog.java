@@ -4,6 +4,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
+
+/*
+ *
+ *
+ *
+ *
+ *
+ */
+
 @Entity
 public class ProjectBacklog {
     @Id
@@ -22,7 +31,7 @@ public class ProjectBacklog {
 
     // One to Many with project Tasks
 
-
+    // Empty Constructor, Getter and Setters
     public ProjectBacklog() {
 
     }

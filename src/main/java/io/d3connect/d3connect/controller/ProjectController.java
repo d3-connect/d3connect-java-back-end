@@ -7,16 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+/*
+ *
+ *
+ */
+
 @RestController
-@RequestMapping("/api/project")
+@RequestMapping("/api")
 public class ProjectController {
 
     @Autowired
@@ -25,7 +26,13 @@ public class ProjectController {
     @Autowired
     MapValidationErrorService mapValidationErrorService;
 
-    @PostMapping("/new")
+    /*
+     *
+     *
+     *
+     */
+
+    @PostMapping("/project/create")
     public ResponseEntity<?> createNewProject (@Valid @RequestBody Project project, BindingResult result) {
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationErrorService(result);
 
@@ -35,7 +42,13 @@ public class ProjectController {
         }
 
         //Return successful project creation and an HTTP Status of 2XX
-        Project projectSave = projectService.createOrUpdateProject(project);
-        return new ResponseEntity<Project>(project, HttpStatus.CREATED);
+        Project projectSave =  projectService.createOrUpdateProject(project);
+        return new ResponseEntity<>(project, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/project/{projectId}")
+    public ResponseEntity<?> findProjectIdentifier(@PathVariable String projectId) {
+        Project project = projectService.findProjectIdentifier(projectId);
+        return new ResponseEntity<>(project, HttpStatus.OK);
     }
 }

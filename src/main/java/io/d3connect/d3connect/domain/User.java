@@ -10,6 +10,14 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 
+/*
+ *
+ *
+ *
+ *
+ *
+ */
+
 @Entity
 public class User {
     @Id
@@ -157,5 +165,13 @@ public class User {
 
     public void setSocialLinks(List<SocialLinks> socialLinks) {
         this.socialLinks = socialLinks;
+    }
+
+    public List<Specialization> getSpecializations() {
+        return specializations;
+    }
+
+    public void setSpecializations(List<Specialization> specializations) {
+        this.specializations = specializations;
     }
 }

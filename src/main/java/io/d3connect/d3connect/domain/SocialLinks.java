@@ -3,6 +3,13 @@ package io.d3connect.d3connect.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+/*
+ *
+ *
+ *
+ *
+ *
+ */
 
 @Entity
 public class SocialLinks {

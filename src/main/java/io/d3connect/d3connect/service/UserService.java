@@ -1,5 +1,4 @@
 package io.d3connect.d3connect.service;
-
 import io.d3connect.d3connect.domain.User;
 import io.d3connect.d3connect.exception.ProjectUserException.CustomErrorException;
 import io.d3connect.d3connect.repository.UserRepository;
@@ -16,7 +15,7 @@ public class UserService {
         try {
             return userRepository.save(user);
         } catch (Exception e) {
-            throw new CustomErrorException("Error creating a user - " + user);
+            throw new CustomErrorException("Username " + user.getUserName() + " already exists");
         }
     }
 
@@ -26,16 +25,15 @@ public class UserService {
     }
 
 
-    // Find one user
-    public User findUserById(Long id) {
-        User user = userRepository.findUserById(id);
-        return user;
-    }
+    // Find one user by Username
+    public User findUsername(String username) { return userRepository.findByUserName(username);}
+
+    // Find one user by Id
+    public User findUserId(Long id) { return userRepository.findUserById(id); }
 
     // Delete User
     public void  deleteUserById(Long id) {
         User user  = userRepository.findUserById(id);
         userRepository.delete(user);
     }
-
 }
