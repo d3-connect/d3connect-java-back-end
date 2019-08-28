@@ -45,11 +45,17 @@ public class User {
     private Comment comment;
 
     // One to Many with Project
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true)
     private List<Project> project;
 
-
     // One to One with Social Links
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true)
+    private List<SocialLinks> socialLinks;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true)
+    private List<Specialization> specializations;
+
+
 
     // Empty Constructor
     public User() {
@@ -140,7 +146,16 @@ public class User {
         return project;
     }
 
+
     public void setProject(List<Project> project) {
         this.project = project;
+    }
+
+    public List<SocialLinks> getSocialLinks() {
+        return socialLinks;
+    }
+
+    public void setSocialLinks(List<SocialLinks> socialLinks) {
+        this.socialLinks = socialLinks;
     }
 }

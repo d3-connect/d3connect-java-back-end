@@ -1,9 +1,8 @@
 package io.d3connect.d3connect.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 
 @Entity
 public class SocialLinks {
@@ -14,7 +13,12 @@ public class SocialLinks {
     private String socialUrl;
     private String socialName;
 
-    //One to One with User
+    // Many To One with User
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnore
+    private User user;
+
 
     // Empty Constructor
     public SocialLinks() {
@@ -42,5 +46,13 @@ public class SocialLinks {
 
     public void setSocialName(String socialName) {
         this.socialName = socialName;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
