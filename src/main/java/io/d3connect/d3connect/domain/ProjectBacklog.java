@@ -1,5 +1,7 @@
 package io.d3connect.d3connect.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,12 +17,14 @@ public class ProjectBacklog {
     // One to One with Project
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "project_id", nullable = false)
+    @JsonIgnore
     private Project project;
 
     // One to Many with project Tasks
 
 
     public ProjectBacklog() {
+
     }
 
     public Long getId() {
