@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProjectBacklogRepository extends CrudRepository<ProjectBacklog, Long> {
+
+    ProjectBacklog findByProjectIdentifier (String identifier);
 }

@@ -21,9 +21,7 @@ public class Comment {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date updated_At;
 
-    public Comment() {
-
-    }
+    public Comment() { }
 
     @PrePersist
     protected void onCreate() {

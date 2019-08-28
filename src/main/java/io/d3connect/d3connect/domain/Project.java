@@ -130,11 +130,7 @@ public class Project {
         this.projectLogo = projectLogo;
     }
 
-    public ProjectBacklog getProjectBacklog() {
-        return projectBacklog;
-    }
+    public ProjectBacklog getProjectBacklog() { return projectBacklog; }
 
-    public void setProjectBacklog(ProjectBacklog projectBacklog) {
-        this.projectBacklog = projectBacklog;
-    }
+    public void setProjectBacklog(ProjectBacklog projectBacklog) { this.projectBacklog = projectBacklog; }
 }
