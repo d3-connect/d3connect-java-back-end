@@ -40,6 +40,9 @@ public class User {
     private String bio;
     private String profileImage;
 
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
+    private Comment comment;
+
     // Empty Constructor
     public User() {
 
@@ -115,5 +118,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Comment getComment() {
+        return comment;
+    }
+
+    public void setComment(Comment comment) {
+        this.comment = comment;
     }
 }
