@@ -1,6 +1,7 @@
 package io.d3connect.d3connect.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -41,11 +42,20 @@ public class Project {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date updated_At;
 
+    // One to one with project backlog. Only one backlog per
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "project")
     private ProjectBacklog projectBacklog;
 
+    //One to one with comments on the project
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "project")
     private Comment comment;
+
+    // One to One with user who created the project
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnore
+    private User user;
+
 
 
     public Project() {
@@ -137,5 +147,19 @@ public class Project {
 
     public void setProjectBacklog(ProjectBacklog projectBacklog) { this.projectBacklog = projectBacklog; }
 
+    public Comment getComment() {
+        return comment;
+    }
 
+    public void setComment(Comment comment) {
+        this.comment = comment;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

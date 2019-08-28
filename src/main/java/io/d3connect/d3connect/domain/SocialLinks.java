@@ -11,10 +11,12 @@ public class SocialLinks {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String socialLink;
+    private String socialUrl;
+    private String socialName;
 
     //One to One with User
 
+    // Empty Constructor
     public SocialLinks() {
     }
 
@@ -26,11 +28,19 @@ public class SocialLinks {
         this.id = id;
     }
 
-    public String getSocialLink() {
-        return socialLink;
+    public String getSocialUrl() {
+        return socialUrl;
     }
 
-    public void setSocialLink(String socialLink) {
-        this.socialLink = socialLink;
+    public void setSocialUrl(String socialUrl) {
+        this.socialUrl = socialUrl;
+    }
+
+    public String getSocialName() {
+        return socialName;
+    }
+
+    public void setSocialName(String socialName) {
+        this.socialName = socialName;
     }
 }
