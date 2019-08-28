@@ -1,9 +1,8 @@
 package io.d3connect.d3connect.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 
 @Entity
 public class Specialization {
@@ -12,10 +11,17 @@ public class Specialization {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String specName;
+    private String specialization;
 
-    public Specialization(String specName) {
-        this.specName = specName;
+    //Many To One with User
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnore
+    private User user;
+
+
+
+    public Specialization() {
     }
 
     public Long getId() {
@@ -26,11 +32,19 @@ public class Specialization {
         this.id = id;
     }
 
-    public String getSpecName() {
-        return specName;
+    public String getSpecialization() {
+        return specialization;
     }
 
-    public void setSpecName(String specName) {
-        this.specName = specName;
+    public void setSpecialization(String specialization) {
+        this.specialization = specialization;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

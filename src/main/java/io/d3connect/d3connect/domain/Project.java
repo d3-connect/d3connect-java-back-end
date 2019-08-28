@@ -56,8 +56,6 @@ public class Project {
     @JsonIgnore
     private User user;
 
-
-
     public Project() {
     }
 
