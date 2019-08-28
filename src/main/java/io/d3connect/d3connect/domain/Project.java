@@ -8,6 +8,14 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
+/*
+ *
+ *
+ *
+ *
+ *
+ */
+
 @Entity
 public class Project {
 
@@ -20,7 +28,7 @@ public class Project {
 
     @NotBlank(message = "Project Identifier is required")
     @Size(min=4, max=128, message = "Please use 4 - 128 characters")
-    @Column(updatable = false, unique = true)
+    @Column(unique = true)
     private String projectIdentifier;
 
     @Column(columnDefinition = "text")
@@ -52,10 +60,12 @@ public class Project {
 
     // One to One with user who created the project
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
 
+
+    // Empty Constructor, Getter and Setters
     public Project() {
     }
 

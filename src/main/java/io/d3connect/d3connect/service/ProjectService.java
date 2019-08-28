@@ -17,17 +17,16 @@ public class ProjectService {
     @Autowired
     ProjectBacklogRepository projectBacklogRepository;
 
+    /*
+     *
+     * Attach backlog to the created or updated project
+     * Only create a new backlog IF the project is Null to indicate it's a new project
+     * Pass project to the newly instantiated backlog to create the db relationship
+     *
+     */
 
     public Project createOrUpdateProject (Project project) {
         try {
-
-            /*
-             *
-             * Attach backlog to the created or updated project
-             * Only create a new backlog IF the project is Null to indicate it's a new project
-             * Pass project to the newly instantiated backlog to create the db relationship
-             *
-             */
 
             if(project.getId() == null) {
                 ProjectBacklog projectBacklog = new ProjectBacklog();
@@ -40,9 +39,19 @@ public class ProjectService {
                 project.setProjectBacklog(projectBacklogRepository.findByProjectIdentifier(project.getProjectIdentifier()));
             }
 
+            //
             return projectRepository.save(project);
+
         } catch (Exception e) {
-            throw  new CustomErrorException("ERROR in Creating a project - Project Identifier already exists for - " + project);
+            throw  new CustomErrorException("Project Identifier " + project.getProjectIdentifier() + " already exists");
         }
+    }
+
+    /*
+     *
+     *
+     */
+    public Project findProjectIdentifier(String projectId) {
+        return projectRepository.findByProjectIdentifier(projectId);
     }
 }
