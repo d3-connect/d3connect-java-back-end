@@ -43,6 +43,10 @@ public class User {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
     private Comment comment;
 
+    // One to One with Project
+
+    // One to One with Social Links
+
     // Empty Constructor
     public User() {
 
