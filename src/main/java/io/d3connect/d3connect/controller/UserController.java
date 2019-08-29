@@ -29,7 +29,7 @@ public class UserController {
     MapValidationErrorService mapValidationErrorService;
 
     // User Creation
-    @PostMapping("/account/create")
+    @PostMapping("/accounts/create")
     public ResponseEntity<?> createNewUser(@Valid @RequestBody User user, BindingResult result) {
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationErrorService(result);
 
@@ -42,13 +42,14 @@ public class UserController {
         return new ResponseEntity<User>(user, HttpStatus.CREATED);
     }
 
-    @GetMapping("/account/user/{username}")
+    // Find by Username
+    @GetMapping("/accounts/users/{username}")
     public ResponseEntity<?> findUserByUsername(@PathVariable String username) {
         User user = userService.findUsername(username);
         return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 
-    @PostMapping("/account/user/delete/{userId}")
+    @PostMapping("/accounts/users/delete/{userId}")
     public ResponseEntity<?> deleteUserById(@PathVariable Long userId, BindingResult result) {
 
         return null;
