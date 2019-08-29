@@ -1,7 +1,6 @@
 package io.d3connect.d3connect.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -49,20 +48,32 @@ public class User {
     private String bio;
     private String profileImage;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
-    private Comment comment;
+    // One to one with comment class. Each user can have a comment
+    @OneToOne(fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            mappedBy = "user")
+    private Comment comments;
 
     // One to Many with Project
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true)
-    private List<Project> project;
+    @OneToMany(fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            mappedBy = "user",
+            orphanRemoval = true)
+    private List<Project> projects;
 
     // One to One with Social Links
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            mappedBy = "user",
+            orphanRemoval = true)
     private List<SocialLinks> socialLinks;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true)
+    // One to May Relationship with Projects. Each user can have many projects
+    @OneToMany(fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            mappedBy = "user",
+            orphanRemoval = true)
     private List<Specialization> specializations;
-
 
 
     // Empty Constructor
@@ -142,23 +153,6 @@ public class User {
         this.password = password;
     }
 
-    public Comment getComment() {
-        return comment;
-    }
-
-    public void setComment(Comment comment) {
-        this.comment = comment;
-    }
-
-    public List<Project> getProject() {
-        return project;
-    }
-
-
-    public void setProject(List<Project> project) {
-        this.project = project;
-    }
-
     public List<SocialLinks> getSocialLinks() {
         return socialLinks;
     }
@@ -173,5 +167,21 @@ public class User {
 
     public void setSpecializations(List<Specialization> specializations) {
         this.specializations = specializations;
+    }
+
+    public Comment getComments() {
+        return comments;
+    }
+
+    public void setComments(Comment comments) {
+        this.comments = comments;
+    }
+
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
     }
 }

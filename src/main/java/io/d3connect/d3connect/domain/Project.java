@@ -51,11 +51,15 @@ public class Project {
     private Date updated_At;
 
     // One to one with project backlog. Only one backlog per
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "project")
+    @OneToOne(fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            mappedBy = "project")
     private ProjectBacklog projectBacklog;
 
     //One to one with comments on the project
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "project")
+    @OneToOne(fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            mappedBy = "project")
     private Comment comment;
 
     // One to One with user who created the project

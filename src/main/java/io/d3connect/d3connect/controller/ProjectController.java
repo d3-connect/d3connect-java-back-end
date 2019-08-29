@@ -32,7 +32,7 @@ public class ProjectController {
      *
      */
 
-    @PostMapping("/project/create")
+    @PostMapping("/projects/create")
     public ResponseEntity<?> createNewProject (@Valid @RequestBody Project project, BindingResult result) {
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationErrorService(result);
 
@@ -46,7 +46,7 @@ public class ProjectController {
         return new ResponseEntity<>(project, HttpStatus.CREATED);
     }
 
-    @GetMapping("/project/{projectId}")
+    @GetMapping("/projects/{projectId}")
     public ResponseEntity<?> findProjectIdentifier(@PathVariable String projectId) {
         Project project = projectService.findProjectIdentifier(projectId);
         return new ResponseEntity<>(project, HttpStatus.OK);

@@ -24,12 +24,13 @@ public class UserService {
       return userRepository.findAll();
     }
 
-
+    // STILL NEEDS TO RETURN ALL PROJECTS ATTACHED TO THE USER NAME
     // Find one user by Username
-    public User findUsername(String username) { return userRepository.findByUserName(username);}
+    public User findUsername(String username) {
+        return userRepository.findByUserName(username);
+    }
 
-    // Find one user by Id
-    public User findUserId(Long id) { return userRepository.findUserById(id); }
+
 
     // Delete User
     public void  deleteUserById(Long id) {
