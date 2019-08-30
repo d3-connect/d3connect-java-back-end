@@ -1,6 +1,7 @@
 package io.d3connect.d3connect.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -10,8 +11,6 @@ import java.util.Date;
 import java.util.List;
 
 /*
- *
- *
  *
  *
  *
@@ -28,7 +27,7 @@ public class User {
 
     @Column(unique = true)
     @NotBlank(message = "Username is required and must be unique")
-    @Size(min=4, max=12, message = "Please use 4 - 12 characters for your username")
+    @Size(min=4, max=15, message = "Please use 4 - 15 characters for your username")
     private String userName;
 
     @NotBlank(message = "Password is required")
@@ -54,7 +53,7 @@ public class User {
             mappedBy = "user")
     private Comment comments;
 
-    // One to Many with Project
+    // One to ?? with Project
     @OneToMany(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,
             mappedBy = "user",
@@ -75,11 +74,8 @@ public class User {
             orphanRemoval = true)
     private List<Specialization> specializations;
 
-
     // Empty Constructor
-    public User() {
-
-    }
+    public User() { }
 
     public Long getId() {
         return id;
