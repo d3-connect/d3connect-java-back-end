@@ -56,18 +56,16 @@ public class Project {
             mappedBy = "project")
     private ProjectBacklog projectBacklog;
 
-    //One to one with comments on the project
+    // One to one with comments on the project
     @OneToOne(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,
             mappedBy = "project")
     private Comment comment;
 
-    // One to One with user who created the project
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
-
 
     // Empty Constructor, Getter and Setters
     public Project() {
