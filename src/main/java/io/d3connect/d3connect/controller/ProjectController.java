@@ -4,7 +4,6 @@ import io.d3connect.d3connect.domain.Project;
 import io.d3connect.d3connect.domain.User;
 import io.d3connect.d3connect.service.MapVaidator.MapValidationErrorService;
 import io.d3connect.d3connect.service.ProjectService;
-import io.d3connect.d3connect.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,10 +27,6 @@ public class ProjectController {
     @Autowired
     MapValidationErrorService mapValidationErrorService;
 
-    //
-    UserService userDao;
-
-
     /*
      *
      *
@@ -48,6 +43,10 @@ public class ProjectController {
         }
 
         //Return successful project creation and an HTTP Status of 2XX
+
+        // Un comment once Spring security is added
+        // project.setUser((userId) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+
         Project projectSave =  projectService.createOrUpdateProject(project, userId);
         return new ResponseEntity<>(project, HttpStatus.CREATED);
     }

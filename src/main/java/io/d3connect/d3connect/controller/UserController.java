@@ -46,7 +46,7 @@ public class UserController {
     @GetMapping("/accounts/users/{username}")
     public ResponseEntity<?> findUserByUsername(@PathVariable String username) {
         User user = userService.findUsername(username);
-        return new ResponseEntity<User>(user, HttpStatus.OK);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @PostMapping("/accounts/users/delete/{userId}")
