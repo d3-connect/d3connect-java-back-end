@@ -48,24 +48,26 @@ public class User {
     private String profileImage;
 
     // One to one with comment class. Each user can have a comment
-    @OneToOne(fetch = FetchType.LAZY,
+    @OneToMany(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,
             mappedBy = "user")
-    private Comment comments;
+    private List<Comment> comments;
 
     // One to ?? with Project
     @OneToMany(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,
             mappedBy = "user",
             orphanRemoval = true)
+    // @NotBlank(message = "User ID is required for each project")
     private List<Project> projects;
 
     // One to One with Social Links
-    @OneToMany(fetch = FetchType.LAZY,
+    @OneToOne(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
             mappedBy = "user",
             orphanRemoval = true)
-    private List<SocialLinks> socialLinks;
+    private SocialLinks socialLinks;
+
 
     // One to May Relationship with Projects. Each user can have many projects
     @OneToMany(fetch = FetchType.LAZY,
@@ -149,11 +151,11 @@ public class User {
         this.password = password;
     }
 
-    public List<SocialLinks> getSocialLinks() {
+    public SocialLinks getSocialLinks() {
         return socialLinks;
     }
 
-    public void setSocialLinks(List<SocialLinks> socialLinks) {
+    public void setSocialLinks(SocialLinks socialLinks) {
         this.socialLinks = socialLinks;
     }
 
@@ -165,11 +167,11 @@ public class User {
         this.specializations = specializations;
     }
 
-    public Comment getComments() {
+    public List<Comment> getComments() {
         return comments;
     }
 
-    public void setComments(Comment comments) {
+    public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
 
@@ -179,5 +181,8 @@ public class User {
 
     public void setProjects(List<Project> projects) {
         this.projects = projects;
+    }
+
+    public void setUser(User userById) {
     }
 }

@@ -13,7 +13,12 @@ public class UserService {
     //Create or Update User
     public User createOrUpdateUser(User user) {
         try {
-            return userRepository.save(user);
+            if(user.getId() != null) {
+                //  project.setProjectBacklog(projectBacklogRepository.findByProjectIdentifier(project.getProjectIdentifier()));
+                user.setUser(userRepository.findUserById(user.getId()));
+            }
+                return userRepository.save(user);
+
         } catch (Exception e) {
             throw new CustomErrorException("Username " + user.getUserName() + " already exists");
         }

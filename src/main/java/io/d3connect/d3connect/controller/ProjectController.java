@@ -51,7 +51,6 @@ public class ProjectController {
         return new ResponseEntity<>(project, HttpStatus.CREATED);
     }
 
-
     // Fetch one project through Project Identifier -> to Service Layer
     @GetMapping("/projects/{projectId}")
     public ResponseEntity<?> findProjectIdentifier(@PathVariable String projectId) {

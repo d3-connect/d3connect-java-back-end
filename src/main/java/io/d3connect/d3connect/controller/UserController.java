@@ -51,9 +51,7 @@ public class UserController {
 
     @PostMapping("/accounts/users/delete/{userId}")
     public ResponseEntity<?> deleteUserById(@PathVariable Long userId, BindingResult result) {
-
         return null;
-
     }
 
 }
