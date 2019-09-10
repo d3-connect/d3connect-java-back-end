@@ -27,7 +27,7 @@ public class SocialLinks {
     private String scocialLink3;
 
     // Many To One with User
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
     @JsonIgnore
     private User user;
@@ -37,6 +37,8 @@ public class SocialLinks {
     public SocialLinks() {
     }
 
+
+    // Getters and Setters
     public Long getId() {
         return id;
     }

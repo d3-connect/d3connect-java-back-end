@@ -2,8 +2,10 @@ package io.d3connect.d3connect.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 /*
@@ -21,22 +23,24 @@ public class Comment {
     private Long id;
 
     @Column(columnDefinition = "text")
+    @NotBlank(message = "Comment can't be blank")
     private String userComment;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(updatable = false)
+    @CreationTimestamp
     private Date created_At;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date updated_At;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "project_id", nullable = false)
+    @JoinColumn(name = "project_id")
     @JsonIgnore
     private Project project;
 
