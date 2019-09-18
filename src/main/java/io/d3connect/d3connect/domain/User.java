@@ -1,8 +1,8 @@
 package io.d3connect.d3connect.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -45,7 +45,11 @@ public class User {
     private Date joinDate;
 
     private String bio;
+
     private String profileImage;
+
+    @Value("${file-upload-path}")
+    private String uploadPath;
 
     // One to one with comment class. Each user can have a comment
     @OneToMany(fetch = FetchType.LAZY,
@@ -64,8 +68,7 @@ public class User {
     // One to One with Social Links
     @OneToOne(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
-            mappedBy = "user",
-            orphanRemoval = true)
+            mappedBy = "user")
     private SocialLinks socialLinks;
 
 
@@ -185,4 +188,6 @@ public class User {
 
     public void setUser(User userById) {
     }
+
+
 }
