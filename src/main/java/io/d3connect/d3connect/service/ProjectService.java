@@ -33,11 +33,10 @@ public class ProjectService {
 
     public Project createOrUpdateProject (Project project, User userId) {
         try {
-
             // Create a new backlog IF project is null
             if(project.getId() == null) {
 
-                //Set user Id attached to the project
+                //Create a new instance of the project backlog
                 ProjectBacklog projectBacklog = new ProjectBacklog();
 
                 // Attach project Identifier and User Id to the project

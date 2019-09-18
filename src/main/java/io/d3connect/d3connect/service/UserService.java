@@ -1,4 +1,6 @@
 package io.d3connect.d3connect.service;
+import io.d3connect.d3connect.domain.SocialLinks;
+import io.d3connect.d3connect.domain.Specialization;
 import io.d3connect.d3connect.domain.User;
 import io.d3connect.d3connect.exception.ProjectUserException.CustomErrorException;
 import io.d3connect.d3connect.repository.UserRepository;
@@ -15,6 +17,9 @@ public class UserService {
         try {
             if(user.getId() != null) {
                 //  project.setProjectBacklog(projectBacklogRepository.findByProjectIdentifier(project.getProjectIdentifier()));
+                SocialLinks socialLinks = new SocialLinks();
+
+                user.setSocialLinks(socialLinks);
                 user.setUser(userRepository.findUserById(user.getId()));
             }
                 return userRepository.save(user);
